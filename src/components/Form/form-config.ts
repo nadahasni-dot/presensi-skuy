@@ -8,7 +8,9 @@ export const FormSchema = z.object({
   employee_id: z.string().min(2, {
     message: "Employee ID must be at least 2 characters.",
   }),
-  presence_type: z.enum(["CI", "CO"]).or(z.string()),
+  presence_type: z
+    .enum(["CI", "CO"], { message: "Presence type must be between CI or CO" })
+    .or(z.string({ message: "Presence type must be selected" })),
   picture: z
     .instanceof(FileList)
     .refine((file) => file?.length == 1, "Picture is required.")
@@ -24,8 +26,13 @@ export const FormSchema = z.object({
     .or(z.string()),
   lat: z.string().min(2).max(100),
   long: z.string().min(2).max(100),
-  work_type: z.enum(["WFC", "WFO"]).or(z.string()),
-  information: z.string().min(3).max(100),
+  work_type: z
+    .enum(["WFC", "WFO"], { message: "Work type must be between WFC or WFO" })
+    .or(z.string({ message: "Work type must be selected" })),
+  information: z
+    .string()
+    .min(3, { message: "Information must be at least 3 characters." })
+    .max(100),
 });
 
 export const defaultValues = {
