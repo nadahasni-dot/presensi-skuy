@@ -7,7 +7,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { LatLng } from "leaflet";
-import { defaultLatLng } from "../Form/form-config";
+import { DEFAULT_LAT_LNG } from "../../config/config";
 
 interface MapEventsHandlerProps {
   onChangeLocation: (latlng: LatLng) => void;
@@ -33,7 +33,7 @@ interface MapViewProps {
 }
 
 export default function MapView({ onPositionChange }: Readonly<MapViewProps>) {
-  const [position, setPosition] = React.useState<LatLng>(defaultLatLng);
+  const [position, setPosition] = React.useState<LatLng>(DEFAULT_LAT_LNG);
 
   const handlePositionChange = (latlng: LatLng) => {
     setPosition(latlng);

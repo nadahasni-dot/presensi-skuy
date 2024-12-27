@@ -1,11 +1,16 @@
-import { LatLng } from "leaflet";
+import { DEFAULT_LAT_LNG } from "@/config/config";
 import { z } from "zod";
 
 export const FormSchema = z.object({
+  apk_version: z.string().min(5, {
+    message: "APK version must be at least 5 characters.",
+  }),
   employee_id: z.string().min(2, {
     message: "Employee ID must be at least 2 characters.",
   }),
-  presence_type: z.enum(["CI", "CO"]).or(z.string()),
+  presence_type: z
+    .enum(["CI", "CO"], { message: "Presence type must be between CI or CO" })
+    .or(z.string({ message: "Presence type must be selected" })),
   picture: z
     .instanceof(FileList)
     .refine((file) => file?.length == 1, "Picture is required.")
@@ -21,18 +26,22 @@ export const FormSchema = z.object({
     .or(z.string()),
   lat: z.string().min(2).max(100),
   long: z.string().min(2).max(100),
-  work_type: z.enum(["WFC", "WFO"]).or(z.string()),
-  information: z.string().min(3).max(100),
+  work_type: z
+    .enum(["WFC", "WFO"], { message: "Work type must be between WFC or WFO" })
+    .or(z.string({ message: "Work type must be selected" })),
+  information: z
+    .string()
+    .min(3, { message: "Information must be at least 3 characters." })
+    .max(100),
 });
 
-export const defaultLatLng = new LatLng(-6.1689594, 106.837635);
-
 export const defaultValues = {
+  apk_version: "",
   employee_id: "",
   presence_type: "",
   picture: "",
-  lat: defaultLatLng.lat.toString(),
-  long: defaultLatLng.lng.toString(),
+  lat: DEFAULT_LAT_LNG.lat.toString(),
+  long: DEFAULT_LAT_LNG.lng.toString(),
   work_type: "",
   information: "",
 };

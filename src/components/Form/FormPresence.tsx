@@ -5,6 +5,7 @@ import { LatLng } from "leaflet";
 import Container from "../Container";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,6 +27,9 @@ import { submitPresence } from "@/services/presence-service";
 import { useMutation } from "react-query";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { LIST_APK_VERSIONS } from "@/config/config";
+
+const apkVersions = LIST_APK_VERSIONS.split(",");
 
 export default function FormPresence() {
   const form = useFormContext<z.infer<typeof FormSchema>>();
@@ -61,6 +65,32 @@ export default function FormPresence() {
       onSubmit={form.handleSubmit(onSubmit, (error) => console.log({ error }))}
     >
       <Container className="flex flex-col gap-4 py-6 pt-20">
+        {/* Dropdown select APK version */}
+        <FormField
+          control={form.control}
+          name="apk_version"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Apk Version</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select APK version" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {apkVersions.map((version) => (
+                    <SelectItem key={version} value={version}>
+                      {version}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* Employee ID */}
         <div>
           <FormField
@@ -129,6 +159,9 @@ export default function FormPresence() {
           <div className="bg-slate-300 overflow-hidden border rounded-lg">
             <MapView onPositionChange={handlePositionChange} />
           </div>
+          <FormDescription>
+            tap on the map to change your presence point.
+          </FormDescription>
         </div>
 
         {/* LAT LONG */}

@@ -5,7 +5,6 @@ import { z } from "zod";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL_API;
 const API_VERSION = import.meta.env.VITE_API_VERSION;
-const PATH_VERSION = import.meta.env.VITE_PATH_VERSION;
 const API_URL = `${BASE_URL}/api/${API_VERSION}`;
 
 const convertFileToBase64 = (file: File): Promise<string> => {
@@ -33,7 +32,7 @@ export const submitPresence = () => {
       const base64Image = await convertFileToBase64(data.picture[0]);
 
       const payload: PresencePayload = {
-        NEW_VERSION_DETECTOR: PATH_VERSION,
+        NEW_VERSION_DETECTOR: data.apk_version,
         ABSENSI_EMPLOYEE_ID: Number(data.employee_id),
         ABSENSI_LAT: Number(data.lat),
         ABSENSI_LNG: Number(data.long),
