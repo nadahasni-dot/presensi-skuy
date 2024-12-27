@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "../Container";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -36,9 +35,9 @@ export default function SecureCheck({ onCheck }: Readonly<SecureCheckProps>) {
   };
 
   return (
-    <Container className="flex bg-slate-100 min-h-screen flex-col justify-center">
+    <main className="bg-primary flex bg-slate-100 p-4 min-h-screen w-full  flex-col justify-center">
       <form onSubmit={validateCode}>
-        <Card>
+        <Card className="max-w-md mx-auto">
           <CardHeader>
             <CardTitle>Secure Checking</CardTitle>
             <CardDescription>
@@ -65,6 +64,6 @@ export default function SecureCheck({ onCheck }: Readonly<SecureCheckProps>) {
           </CardFooter>
         </Card>
       </form>
-    </Container>
+    </main>
   );
 }
