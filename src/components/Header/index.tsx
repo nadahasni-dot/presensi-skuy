@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="bg-[#02275d] text-white fixed top-0 left-0 right-0 z-20">
       <div
-        className="flex mx-auto container px-4 xs:px-0 py-3
+        className="flex mx-auto container px-4 xs:px-0 md:px-20 py-3
          justify-between"
       >
         <h1 className="text-xl font-semibold uppercase">Presensi SKUY</h1>

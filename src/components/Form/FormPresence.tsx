@@ -165,8 +165,8 @@ export default function FormPresence() {
         </div>
 
         {/* LAT LONG */}
-        <div className="flex justify-stretch gap-2">
-          <div>
+        <div className="flex justify-stretch gap-4">
+          <div className="flex-1">
             <FormField
               control={form.control}
               name="lat"
@@ -186,7 +186,7 @@ export default function FormPresence() {
               )}
             />
           </div>
-          <div>
+          <div className="flex-1">
             <FormField
               control={form.control}
               name="long"

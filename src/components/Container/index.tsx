@@ -11,7 +11,9 @@ export default function Container({
   className = "",
 }: Readonly<ContainerProps>) {
   return (
-    <section className={cn("px-4 xs:px-0 container", className)}>
+    <section
+      className={cn("px-4 xs:px-0 md:px-20 container mx-auto", className)}
+    >
       {children}
     </section>
   );
