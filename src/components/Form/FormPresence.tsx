@@ -5,6 +5,7 @@ import { LatLng } from "leaflet";
 import Container from "../Container";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -158,6 +159,9 @@ export default function FormPresence() {
           <div className="bg-slate-300 overflow-hidden border rounded-lg">
             <MapView onPositionChange={handlePositionChange} />
           </div>
+          <FormDescription>
+            tap on the map to change your presence point.
+          </FormDescription>
         </div>
 
         {/* LAT LONG */}
