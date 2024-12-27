@@ -1,7 +1,10 @@
-import { LatLng } from "leaflet";
+import { DEFAULT_LAT_LNG } from "@/config/config";
 import { z } from "zod";
 
 export const FormSchema = z.object({
+  apk_version: z.string().min(5, {
+    message: "APK version must be at least 5 characters.",
+  }),
   employee_id: z.string().min(2, {
     message: "Employee ID must be at least 2 characters.",
   }),
@@ -25,14 +28,13 @@ export const FormSchema = z.object({
   information: z.string().min(3).max(100),
 });
 
-export const defaultLatLng = new LatLng(-6.1689594, 106.837635);
-
 export const defaultValues = {
+  apk_version: "",
   employee_id: "",
   presence_type: "",
   picture: "",
-  lat: defaultLatLng.lat.toString(),
-  long: defaultLatLng.lng.toString(),
+  lat: DEFAULT_LAT_LNG.lat.toString(),
+  long: DEFAULT_LAT_LNG.lng.toString(),
   work_type: "",
   information: "",
 };
