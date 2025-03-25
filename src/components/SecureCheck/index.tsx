@@ -37,6 +37,7 @@ export default function SecureCheck({ onCheck }: Readonly<SecureCheckProps>) {
   return (
     <main className="bg-primary flex bg-slate-100 p-4 min-h-screen w-full  flex-col justify-center">
       <form onSubmit={validateCode}>
+        <input type="hidden" name="username" value="LNSW" />
         <Card className="max-w-md mx-auto">
           <CardHeader>
             <CardTitle>Secure Checking</CardTitle>
@@ -52,6 +53,7 @@ export default function SecureCheck({ onCheck }: Readonly<SecureCheckProps>) {
                   required
                   id="secure_code"
                   type="password"
+                  name="password"
                   placeholder="Please enter the secure code"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
