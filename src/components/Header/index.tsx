@@ -13,7 +13,12 @@ export default function Header() {
         className="flex mx-auto container px-4 xs:px-0 md:px-20 py-3
          justify-between"
       >
-        <h1 className="text-xl font-semibold uppercase">Presensi SKUY</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-semibold uppercase">
+            BJIRLAH MEN <small className="align-super"></small>
+          </h1>
+          <span className="text-sm align-super pt-1">v1.1.2</span>
+        </div>
         <Button
           onClick={() => form.reset()}
           size="icon"
