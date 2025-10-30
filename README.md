@@ -50,3 +50,4 @@ export default tseslint.config({
 ```
 
 Test Signed Commit with GPG key
+Test signed commit with SSH key
